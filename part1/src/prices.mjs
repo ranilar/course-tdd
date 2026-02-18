@@ -1,5 +1,6 @@
 import "./polyfills";
 import express from "express";
+import { Temporal, toTemporalInstant } from "@js-temporal/polyfill";
 
 // Refactor the following code to get rid of the legacy Date class.
 // Use Temporal.PlainDate instead. See /test/date_conversion.spec.mjs for examples.
@@ -76,7 +77,7 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    return date.getUTCDay() === 1;
+    return Temporal.Instant.fromEpochMilliseconds(date.getTime()).toZonedDateTimeISO("UTC").dayOfWeek === 1;
   }
 
   function isHoliday(date) {
