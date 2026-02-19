@@ -88,8 +88,8 @@ function createApp(database) {
       if (
         date &&
         Temporal.PlainDate.from(date2).year === holiday2.year &&
-        date.getMonth() === holiday2.month-1 &&
-        date.getDate() === holiday2.day
+        Temporal.PlainDate.from(date2).month === holiday2.month &&
+        Temporal.PlainDate.from(date2).day === holiday2.day
       ) {
         return true;
       }
