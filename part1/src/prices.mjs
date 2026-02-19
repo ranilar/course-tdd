@@ -20,6 +20,7 @@ function createApp(database) {
     const type = req.query.type;
     const baseCost = database.findBasePriceByType(type).cost;
     const date = parseDate(req.query.date);
+    const date2 = (req.query.date)
     const cost = calculateCost(age, type, date, baseCost);
     res.json({ cost });
   });
@@ -77,7 +78,7 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    return Temporal.Instant.fromEpochMilliseconds(date.getTime()).toZonedDateTimeISO("UTC").dayOfWeek === 1;
+    return date.getUTCDay() === 1;
   }
 
   function isHoliday(date) {
